@@ -1,29 +1,31 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>K-POP: 세계를 사로잡은 한국의 소리</title>
+    <title>K-POP PULSE 2026 | Real-time K-POP News & Charts</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap"
         rel="stylesheet">
 
     <style>
         :root {
-            --bg-color: #0b0816;
-            --card-bg: rgba(25, 20, 44, 0.6);
+            --bg-color: #070913;
+            --card-bg: rgba(15, 22, 42, 0.45);
             --card-border: rgba(255, 255, 255, 0.08);
             --text-primary: #ffffff;
-            --text-secondary: #c7c5d8;
-            --accent-purple: #9d4edd;
-            --accent-pink: #ff007f;
-            --accent-pink-glow: rgba(255, 0, 127, 0.4);
-            --accent-blue: #3a86c8;
-            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --text-secondary: #94a3b8;
+            --accent-pink: #ff2a7a;
+            --accent-pink-glow: rgba(255, 42, 122, 0.35);
+            --accent-cyan: #00f0ff;
+            --accent-cyan-glow: rgba(0, 240, 255, 0.25);
+            --accent-purple: #8b5cf6;
+            --glass-blur: blur(16px);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
@@ -35,299 +37,720 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-primary);
-            font-family: 'Noto Sans KR', sans-serif;
-            line-height: 1.6;
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
             overflow-x: hidden;
             background-image:
-                radial-gradient(circle at top right, rgba(157, 78, 221, 0.15), transparent 45%),
-                radial-gradient(circle at bottom left, rgba(255, 0, 127, 0.12), transparent 45%);
+                radial-gradient(circle at 10% 20%, rgba(255, 42, 122, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 240, 255, 0.06) 0%, transparent 45%),
+                radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.04) 0%, transparent 50%);
             background-attachment: fixed;
+            min-height: 100vh;
         }
 
+        /* Ambient glowing circles */
+        .ambient-glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: var(--accent-pink);
+            filter: blur(120px);
+            opacity: 0.15;
+            z-index: -1;
+            pointer-events: none;
+            top: 15%;
+            left: 5%;
+            animation: float 8s ease-in-out infinite alternate;
+        }
+
+        .ambient-glow-2 {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: var(--accent-cyan);
+            filter: blur(150px);
+            opacity: 0.12;
+            z-index: -1;
+            pointer-events: none;
+            bottom: 10%;
+            right: 5%;
+            animation: float 12s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) scale(1);
+            }
+
+            100% {
+                transform: translateY(-30px) scale(1.1);
+            }
+        }
+
+        /* Container */
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 1.5rem;
+            padding: 0 2rem 3rem 2rem;
         }
 
-        /* Navigation */
-        nav {
+        /* Header */
+        header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 0;
+            padding: 2rem 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 2.5rem;
         }
 
-        .logo {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
-            font-size: 1.5rem;
-            letter-spacing: 1px;
-            background: linear-gradient(45deg, var(--accent-pink), var(--accent-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 6rem 0 4rem 0;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            padding: 0.35rem 1rem;
-            background: rgba(255, 0, 127, 0.1);
-            border: 1px solid rgba(255, 0, 127, 0.3);
-            color: var(--accent-pink);
-            border-radius: 30px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 0 15px rgba(255, 0, 127, 0.1);
-        }
-
-        .hero h1 {
-            font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
-            font-size: 3.5rem;
-            font-weight: 900;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #ffffff 30%, #e0aaff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            max-width: 700px;
-            margin: 0 auto 2.5rem auto;
-            font-weight: 300;
-        }
-
-        /* Cards Grid */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .card {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--card-border);
-            border-radius: 20px;
-            padding: 2.5rem 2rem;
-            transition: var(--transition);
+        .logo-container {
             display: flex;
-            flex-direction: column;
-            gap: 1.25rem;
+            align-items: center;
+            gap: 0.75rem;
         }
 
-        .card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(157, 78, 221, 0.4);
-            box-shadow: 0 15px 35px rgba(157, 78, 221, 0.15);
-        }
-
-        .card-icon {
-            width: 50px;
-            height: 50px;
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-cyan));
             border-radius: 12px;
-            background: linear-gradient(135deg, var(--accent-purple), rgba(157, 78, 221, 0.4));
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 0.5rem;
+            box-shadow: 0 0 20px var(--accent-pink-glow);
         }
 
-        .card-icon svg {
-            width: 24px;
-            height: 24px;
+        .logo-icon svg {
+            width: 22px;
+            height: 22px;
             fill: white;
         }
 
-        .card h3 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .card p {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        /* Features Section */
-        .features-section {
-            padding: 6rem 0;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-header h2 {
-            font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
-            font-size: 2.5rem;
+        .logo-text {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.75rem;
             font-weight: 800;
-            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+            background: linear-gradient(to right, #ffffff, #a5b4fc, #e0e7ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .section-header p {
-            color: var(--text-secondary);
-            font-size: 1.05rem;
+        .logo-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-pink);
+            font-weight: 700;
+            margin-left: 0.5rem;
+            border: 1px solid rgba(255, 42, 122, 0.3);
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: rgba(255, 42, 122, 0.1);
         }
 
-        /* Artist Showcase */
-        .artists-section {
-            padding: 4rem 0 8rem 0;
-        }
-
-        .artist-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        .header-meta {
+            display: flex;
+            align-items: center;
             gap: 1.5rem;
         }
 
-        .artist-card {
-            position: relative;
-            border-radius: 16px;
-            overflow: hidden;
-            aspect-ratio: 4/5;
-            background: linear-gradient(180deg, #1d1836, #090615);
-            border: 1px solid var(--card-border);
+        .live-indicator {
             display: flex;
-            align-items: flex-end;
-            padding: 1.5rem;
-            cursor: pointer;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-pink);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-pink);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 0.4;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.4;
+            }
+        }
+
+        /* Glass Container Style */
+        .glass-panel {
+            background: var(--card-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 2rem;
             transition: var(--transition);
         }
 
-        .artist-card:hover {
-            transform: scale(1.03);
-            border-color: var(--accent-pink);
-            box-shadow: 0 10px 25px rgba(255, 0, 127, 0.2);
+        .glass-panel:hover {
+            border-color: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
-        .artist-card-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to top, rgba(9, 6, 21, 0.9) 30%, rgba(9, 6, 21, 0.1) 80%);
-            z-index: 1;
+        /* Grid Layout */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 8fr 4fr;
+            gap: 2rem;
         }
 
-        .artist-info {
+        /* Left Side */
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* Right Side */
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* Hero Spotlight Section */
+        .spotlight-panel {
             position: relative;
-            z-index: 2;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(88, 28, 135, 0.2)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400"><rect width="800" height="400" fill="none"/><path d="M0 200 Q200 100 400 200 T800 200" fill="none" stroke="rgba(255,42,122,0.15)" stroke-width="3"/><path d="M0 200 Q200 300 400 200 T800 200" fill="none" stroke="rgba(0,240,255,0.1)" stroke-width="2"/></svg>') no-repeat center center;
+            background-size: cover;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+        }
+
+        .spotlight-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--accent-pink), var(--accent-purple));
+            color: white;
+            font-weight: 700;
+            font-size: 0.75rem;
+            padding: 0.35rem 0.85rem;
+            border-radius: 30px;
+            margin-bottom: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(255, 42, 122, 0.4);
+        }
+
+        .spotlight-title {
+            font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+            font-size: 2.25rem;
+            font-weight: 800;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #ffffff, #f1f5f9, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .spotlight-desc {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            max-width: 90%;
+        }
+
+        .spotlight-footer {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 1.5rem;
+        }
+
+        .spotlight-stat {
             display: flex;
             flex-direction: column;
             gap: 0.25rem;
         }
 
-        .artist-name {
-            font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
-            font-size: 1.4rem;
-            font-weight: 800;
+        .stat-value {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            text-shadow: 0 0 10px var(--accent-cyan-glow);
         }
 
-        .artist-genre {
-            font-size: 0.8rem;
-            color: var(--accent-pink);
-            font-weight: 700;
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
-        .artist-desc {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-top: 0.25rem;
+        /* Section Heading */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
         }
 
-        /* Abstract glowing art for background card */
-        .art-glow {
-            position: absolute;
-            top: 20%;
-            left: 20%;
-            width: 60%;
-            height: 40%;
-            border-radius: 50%;
-            filter: blur(40px);
-            opacity: 0.35;
-            z-index: 0;
-        }
-
-        .glow-purple {
-            background: var(--accent-purple);
-        }
-
-        .glow-pink {
-            background: var(--accent-pink);
-        }
-
-        .glow-blue {
-            background: var(--accent-blue);
-        }
-
-        /* Interactive Footer Banner */
-        .join-banner {
-            background: linear-gradient(135deg, rgba(157, 78, 221, 0.2), rgba(255, 0, 127, 0.1));
-            border: 1px solid rgba(255, 0, 127, 0.2);
-            border-radius: 24px;
-            padding: 4rem 2rem;
-            text-align: center;
-            margin-bottom: 5rem;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .join-banner h3 {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-        }
-
-        .join-banner p {
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.85rem 2rem;
-            background: linear-gradient(90deg, var(--accent-pink), var(--accent-purple));
-            color: white;
+        .section-title {
+            font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+            font-size: 1.5rem;
             font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-title svg {
+            width: 22px;
+            height: 22px;
+            stroke: var(--accent-pink);
+        }
+
+        .section-more {
+            font-size: 0.85rem;
+            color: var(--accent-cyan);
             text-decoration: none;
-            border-radius: 30px;
-            box-shadow: 0 0 20px var(--accent-pink-glow);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
             transition: var(--transition);
         }
 
-        .btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(255, 0, 127, 0.6);
+        .section-more:hover {
+            color: white;
+            text-shadow: 0 0 8px var(--accent-cyan);
+        }
+
+        /* News Cards Grid */
+        .news-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .news-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 260px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .news-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, transparent 60%, rgba(7, 9, 19, 0.9));
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 42, 122, 0.3);
+            box-shadow: 0 10px 25px rgba(255, 42, 122, 0.1);
+        }
+
+        .news-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            z-index: 2;
+        }
+
+        .news-tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #f1f5f9;
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .news-card:nth-child(1) .news-tag {
+            border-color: rgba(139, 92, 246, 0.4);
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        .news-card:nth-child(2) .news-tag {
+            border-color: rgba(0, 240, 255, 0.4);
+            background: rgba(0, 240, 255, 0.1);
+        }
+
+        .news-card:nth-child(3) .news-tag {
+            border-color: rgba(255, 42, 122, 0.4);
+            background: rgba(255, 42, 122, 0.1);
+        }
+
+        .news-card:nth-child(4) .news-tag {
+            border-color: rgba(234, 179, 8, 0.4);
+            background: rgba(234, 179, 8, 0.1);
+        }
+
+        .news-date {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .news-card-body {
+            z-index: 2;
+            margin-top: auto;
+        }
+
+        .news-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .news-card:hover .news-title {
+            color: var(--accent-cyan);
+        }
+
+        .news-summary {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-height: 1.5;
+        }
+
+        /* Chart Widget */
+        .chart-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .chart-item {
+            display: flex;
+            align-items: center;
+            padding: 0.85rem 1rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+
+        .chart-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: scale(1.01);
+        }
+
+        .rank-num {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 800;
+            width: 30px;
+            text-align: center;
+        }
+
+        .rank-1 {
+            background: linear-gradient(135deg, var(--accent-pink), #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .rank-trend {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 40px;
+            font-size: 0.65rem;
+            margin-right: 0.75rem;
+        }
+
+        .trend-up {
+            color: #10b981;
+        }
+
+        .trend-down {
+            color: #ef4444;
+        }
+
+        .trend-steady {
+            color: var(--text-secondary);
+        }
+
+        .album-art {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            margin-right: 1rem;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .album-art::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--bg-color);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .art-cortis {
+            background: linear-gradient(45deg, #ff2a7a, #3b82f6);
+        }
+
+        .art-aespa {
+            background: linear-gradient(45deg, #a855f7, #00f0ff);
+        }
+
+        .art-illit {
+            background: linear-gradient(45deg, #ec4899, #f43f5e);
+        }
+
+        .art-gidle {
+            background: linear-gradient(45deg, #e11d48, #4f46e5);
+        }
+
+        .art-yeonjun {
+            background: linear-gradient(45deg, #06b6d4, #10b981);
+        }
+
+        .song-info {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+
+        .song-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .song-artist {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .chart-value {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.75rem;
+            color: var(--accent-cyan);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: rgba(0, 240, 255, 0.05);
+        }
+
+        /* Comeback Calendar */
+        .calendar-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .calendar-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .calendar-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .cal-date {
+            background: rgba(255, 42, 122, 0.1);
+            border: 1px solid rgba(255, 42, 122, 0.2);
+            color: var(--accent-pink);
+            font-family: 'Outfit', sans-serif;
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .cal-date span {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .cal-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .cal-artist {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .cal-release {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .cal-type {
+            font-size: 0.7rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1px 6px;
+            border-radius: 4px;
+            width: fit-content;
+            color: var(--accent-cyan);
+            border: 1px solid rgba(0, 240, 255, 0.1);
+        }
+
+        /* Voting Poll */
+        .poll-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+            margin-top: 1.25rem;
+        }
+
+        .poll-option-btn {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--card-border);
+            color: var(--text-primary);
+            padding: 1rem;
+            border-radius: 12px;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .poll-option-btn:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .poll-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255, 42, 122, 0.15), rgba(0, 240, 255, 0.1));
+            width: 0%;
+            z-index: 0;
+            transition: width 1s cubic-bezier(0.1, 0.8, 0.2, 1);
+        }
+
+        .poll-text,
+        .poll-percent {
+            z-index: 1;
+            position: relative;
+        }
+
+        .poll-percent {
+            font-family: 'Outfit', sans-serif;
+            color: var(--accent-cyan);
+            font-weight: 700;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .poll-active .poll-percent {
+            opacity: 1;
+        }
+
+        .poll-total-votes {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 1rem;
+            text-align: right;
+        }
+
+        /* Trends Widget */
+        .trend-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .trend-keyword {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            padding: 0.35rem 0.75rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .trend-keyword:hover {
+            background: rgba(255, 42, 122, 0.1);
+            border-color: var(--accent-pink);
+            color: white;
+            cursor: pointer;
         }
 
         /* Footer */
         footer {
-            padding: 3rem 0;
+            margin-top: 5rem;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 2.5rem 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -335,24 +758,83 @@
             font-size: 0.85rem;
         }
 
-        .footer-logo {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-link:hover {
+            color: var(--accent-cyan);
+        }
+
+        /* Language Switcher */
+        .language-switch {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            padding: 0.5rem 1.0rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+        }
+
+        .lang-btn {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .lang-btn.active {
+            color: var(--accent-cyan);
+            text-shadow: 0 0 8px var(--accent-cyan-glow);
+        }
+
+        .lang-btn:hover:not(.active) {
+            color: var(--text-primary);
+        }
+
+        .lang-separator {
+            color: rgba(255, 255, 255, 0.15);
+            font-size: 0.75rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .grid-layout {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
+            .news-grid {
+                grid-template-columns: 1fr;
             }
 
-            .hero p {
-                font-size: 1.05rem;
+            .spotlight-title {
+                font-size: 1.75rem;
             }
 
-            footer {
+            header {
                 flex-direction: column;
-                gap: 1rem;
-                text-align: center;
+                gap: 1.5rem;
+                align-items: flex-start;
+            }
+
+            .header-meta {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .container {
+                padding: 0 1rem 2rem 1rem;
             }
         }
     </style>
@@ -360,142 +842,466 @@
 
 <body>
 
+    <div class="ambient-glow"></div>
+    <div class="ambient-glow-2"></div>
+
     <div class="container">
 
-        <!-- Navigation -->
-        <nav>
-            <div class="logo">K-POP WORLD</div>
-        </nav>
-
-        <!-- Hero Section -->
-        <section class="hero">
-            <span class="hero-badge">Global Phenomenon</span>
-            <h1>K-POP의 경이로운 여정</h1>
-            <p>
-                단순한 대중음악 장르를 넘어, 트렌디한 사운드, 경이로운 퍼포먼스, 그리고 독창적인 세계관을 통해 전 세계 음악팬들의 마음을 사로잡은 글로벌 문화 코드 K-POP을 소개합니다.
-            </p>
-            <a href="#discover" class="btn">지금 알아보기</a>
-        </section>
-
-        <!-- Features Grid -->
-        <section class="features-section" id="discover">
-            <div class="section-header">
-                <h2>K-POP의 핵심 3대 매력</h2>
-                <p>전 세계가 한국 대중가요에 열광하는 이유</p>
+        <!-- Header -->
+        <header>
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15.5h-2v-6h2v6zm0-8h-2v-2h2v2z" />
+                    </svg>
+                </div>
+                <div class="logo-text">K-POP PULSE</div>
+                <span class="logo-tag">2026</span>
             </div>
 
-            <div class="grid">
+            <div class="header-meta">
+                <div class="language-switch">
+                    <a href="index.html" class="lang-btn">KO</a>
+                    <span class="lang-separator">|</span>
+                    <a href="index_en.html" class="lang-btn active">EN</a>
+                </div>
+                <div class="live-indicator">
+                    <span class="live-dot"></span>
+                    <span id="live-time">LOAD TIME</span>
+                </div>
+            </div>
+        </header>
 
-                <!-- Feature 1 -->
-                <div class="card">
-                    <div class="card-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path
-                                d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
-                        </svg>
+        <!-- Grid Layout -->
+        <div class="grid-layout">
+
+            <!-- Left Column -->
+            <div class="left-column">
+
+                <!-- Spotlight Panel -->
+                <div class="glass-panel spotlight-panel">
+                    <span class="spotlight-badge">Hot Issue</span>
+                    <h1 class="spotlight-title">CORTIS 'REDRED' Achieves Milestone of 73 Consecutive Days at #1</h1>
+                    <p class="spotlight-desc">
+                        Boy group CORTIS's 2nd mini-album title track 'REDRED' has topped Apple Music's 'Today's Top
+                        100: South Korea' chart for 73 consecutive days, establishing itself as the biggest mega-hit of
+                        2026. It also boasts 5 consecutive weeks at #1 on the global Soompi chart.
+                    </p>
+                    <div class="spotlight-footer">
+                        <div class="spotlight-stat">
+                            <span class="stat-value">73 Days+</span>
+                            <span class="stat-label">Domestic Chart #1</span>
+                        </div>
+                        <div class="spotlight-stat">
+                            <span class="stat-value">5 Weeks</span>
+                            <span class="stat-label">Global Chart #1</span>
+                        </div>
+                        <div class="spotlight-stat">
+                            <span class="stat-value">1st Lineup</span>
+                            <span class="stat-label">Confirmed for 2026 TMA</span>
+                        </div>
                     </div>
-                    <h3>독창적인 사운드 & 콘셉트</h3>
-                    <p>다채로운 팝 장르의 조합, 트렌디한 비트, 그리고 앨범마다 이어지는 아티스트들의 탄탄하고 매력적인 유니버스(세계관) 스토리가 듣는 재미를 극대화합니다.</p>
                 </div>
 
-                <!-- Feature 2 -->
-                <div class="card">
-                    <div class="card-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path
-                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-                        </svg>
+                <!-- Latest News Feed -->
+                <div>
+                    <div class="section-header">
+                        <div class="section-title">
+                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z">
+                                </path>
+                            </svg>
+                            Latest News Feed
+                        </div>
                     </div>
-                    <h3>한계를 넘어선 칼군무</h3>
-                    <p>보는 음악의 절정을 선사하는 화려하고 정교한 단체 댄스 퍼포먼스. 숏폼 비디오 시대를 맞아 전 세계 챌린지 붐을 이끌며 문화적 흐름을 주도합니다.</p>
-                </div>
 
-                <!-- Feature 3 -->
-                <div class="card">
-                    <div class="card-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path
-                                d="M16.5 13c-1.2 0-3.07.34-4.5 1-1.43-.67-3.3-1-4.5-1C5.07 13 1.5 14.58 1.5 17v2.5c0 .28.22.5.5.5h19.5c.28 0 .5-.22.5-.5V17c0-2.42-3.57-4-6-4zM7.5 11c1.93 0 3.5-1.57 3.5-3.5S9.43 4 7.5 4 4 5.57 4 7.5 5.57 11 7.5 11zm9 0c1.93 0 3.5-1.57 3.5-3.5S18.43 4 16.5 4s-3.5 1.57-3.5 3.5 1.57 3.5 3.5 3.5z" />
-                        </svg>
+                    <div class="news-grid">
+
+                        <!-- News 1 -->
+                        <div class="news-card">
+                            <div class="news-card-header">
+                                <span class="news-tag">Concert / Live</span>
+                                <span class="news-date">2026.07.12</span>
+                            </div>
+                            <div class="news-card-body">
+                                <h3 class="news-title">TWICE Successfully Concludes 'THIS IS FOR' World Tour Finale</h3>
+                                <p class="news-summary">TWICE sold out all seats for their massive world tour finale
+                                    concerts held at KSPO Dome from July 10th to 12th, once again proving their
+                                    overwhelming power as global live performance leaders.</p>
+                            </div>
+                        </div>
+
+                        <!-- News 2 -->
+                        <div class="news-card">
+                            <div class="news-card-header">
+                                <span class="news-tag">Awards</span>
+                                <span class="news-date">2026.07.14</span>
+                            </div>
+                            <div class="news-card-body">
+                                <h3 class="news-title">2026 The Fact Music Awards (TMA) 1st Lineup Confirmed</h3>
+                                <p class="news-summary">ATEEZ, CORTIS, and tripleS have been revealed as the first
+                                    official lineup for the '2026 TMA' to be held at the Busan Asiad Main Stadium on
+                                    September 19th, drawing attention from fans worldwide.</p>
+                            </div>
+                        </div>
+
+                        <!-- News 3 -->
+                        <div class="news-card">
+                            <div class="news-card-header">
+                                <span class="news-tag">Special / Trend</span>
+                                <span class="news-date">2026.07.08</span>
+                            </div>
+                            <div class="news-card-body">
+                                <h3 class="news-title">RESCENE Selected as Official Convenience Store Brand Model</h3>
+                                <p class="news-summary">Rising rookies RESCENE have been selected as advertising models
+                                    for a famous convenience store brand, a first for a K-pop idol group.
+                                    Simultaneously, they have remade KARA's classic hit 'Pretty Girl' to challenge for
+                                    the title of summer queens.</p>
+                            </div>
+                        </div>
+
+                        <!-- News 4 -->
+                        <div class="news-card">
+                            <div class="news-card-header">
+                                <span class="news-tag">Event</span>
+                                <span class="news-date">2026.07.10</span>
+                            </div>
+                            <div class="news-card-body">
+                                <h3 class="news-title">Peak of Summer: 'PSY Drenched Show 2026' & DAY6 10th Anniversary
+                                    Tour</h3>
+                                <p class="news-summary">DAY6's massive 10th anniversary concert tour and summer's
+                                    ultimate festival, 'PSY Drenched Show 2026', have launched back-to-back, heating up
+                                    the music scene this July with explosive energy.</p>
+                            </div>
+                        </div>
+
                     </div>
-                    <h3>글로벌 팬덤 네트워크</h3>
-                    <p>전 세계 팬들이 자발적으로 결집하여 만들어낸 강력한 유대감. 소셜 미디어를 기반으로 아티스트와 실시간으로 소통하며 세계적 영향력을 발휘합니다.</p>
                 </div>
 
             </div>
-        </section>
 
-        <!-- Artists Section -->
-        <section class="artists-section">
-            <div class="section-header">
-                <h2>글로벌 아이콘</h2>
-                <p>현재 글로벌 차트를 주도하고 있는 K-POP 대표 주자들</p>
+            <!-- Right Column -->
+            <div class="right-column">
+
+                <!-- K-POP Hot Chart Panel -->
+                <div class="glass-panel">
+                    <div class="section-header">
+                        <div class="section-title">
+                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+                                </path>
+                            </svg>
+                            Weekly Real-time Chart
+                        </div>
+                        <span class="chart-value">2nd Week of July</span>
+                    </div>
+
+                    <div class="chart-list">
+                        <!-- Chart Item 1 -->
+                        <div class="chart-item">
+                            <span class="rank-num rank-1">1</span>
+                            <div class="rank-trend trend-steady">
+                                <span>-</span>
+                            </div>
+                            <div class="album-art art-cortis">RED</div>
+                            <div class="song-info">
+                                <span class="song-title">REDRED</span>
+                                <span class="song-artist">CORTIS</span>
+                            </div>
+                            <span class="chart-value">73 Days at #1</span>
+                        </div>
+
+                        <!-- Chart Item 2 -->
+                        <div class="chart-item">
+                            <span class="rank-num">2</span>
+                            <div class="rank-trend trend-up">
+                                <span>▲ 1</span>
+                            </div>
+                            <div class="album-art art-aespa">LMN</div>
+                            <div class="song-info">
+                                <span class="song-title">LEMONADE</span>
+                                <span class="song-artist">aespa</span>
+                            </div>
+                            <span class="chart-value">Strong Streaming</span>
+                        </div>
+
+                        <!-- Chart Item 3 -->
+                        <div class="chart-item">
+                            <span class="rank-num">3</span>
+                            <div class="rank-trend trend-down">
+                                <span>▼ 1</span>
+                            </div>
+                            <div class="album-art art-illit">ME</div>
+                            <div class="song-info">
+                                <span class="song-title">It's Me</span>
+                                <span class="song-artist">ILLIT</span>
+                            </div>
+                            <span class="chart-value">Global Hit</span>
+                        </div>
+
+                        <!-- Chart Item 4 -->
+                        <div class="chart-item">
+                            <span class="rank-num">4</span>
+                            <div class="rank-trend trend-up">
+                                <span>▲ 3</span>
+                            </div>
+                            <div class="album-art art-gidle">KLAX</div>
+                            <div class="song-info">
+                                <span class="song-title">Klaxon</span>
+                                <span class="song-artist">(G)I-DLE</span>
+                            </div>
+                            <span class="chart-value">Hanteo World #1</span>
+                        </div>
+
+                        <!-- Chart Item 5 -->
+                        <div class="chart-item">
+                            <span class="rank-num">5</span>
+                            <div class="rank-trend trend-up">
+                                <span>NEW</span>
+                            </div>
+                            <div class="album-art art-yeonjun">ICE</div>
+                            <div class="song-info">
+                                <span class="song-title">Ice Cream (Solo)</span>
+                                <span class="song-artist">YEONJUN (TXT)</span>
+                            </div>
+                            <span class="chart-value">Album #1</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comeback Calendar Widget -->
+                <div class="glass-panel">
+                    <div class="section-header">
+                        <div class="section-title">
+                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                </path>
+                            </svg>
+                            July Release Calendar
+                        </div>
+                    </div>
+
+                    <div class="calendar-list">
+                        <!-- Cal 1 -->
+                        <div class="calendar-item">
+                            <div class="cal-date">
+                                06
+                                <span>JUL</span>
+                            </div>
+                            <div class="cal-details">
+                                <span class="cal-artist">(G)I-DLE</span>
+                                <span class="cal-release">9th Mini Album 'We made'</span>
+                                <span class="cal-type">Mini Album</span>
+                            </div>
+                        </div>
+
+                        <!-- Cal 2 -->
+                        <div class="calendar-item">
+                            <div class="cal-date">
+                                07
+                                <span>JUL</span>
+                            </div>
+                            <div class="cal-details">
+                                <span class="cal-artist">KIHYUN (MONSTA X)</span>
+                                <span class="cal-release">Solo Mini Album 'BORDERLINE'</span>
+                                <span class="cal-type">Solo Comeback</span>
+                            </div>
+                        </div>
+
+                        <!-- Cal 3 -->
+                        <div class="calendar-item">
+                            <div class="cal-date">
+                                08
+                                <span>JUL</span>
+                            </div>
+                            <div class="cal-details">
+                                <span class="cal-artist">RESCENE</span>
+                                <span class="cal-release">KARA 'Pretty Girl' Remake</span>
+                                <span class="cal-type">Special Single</span>
+                            </div>
+                        </div>
+
+                        <!-- Cal 4 -->
+                        <div class="calendar-item">
+                            <div class="cal-date">
+                                10
+                                <span>JUL</span>
+                            </div>
+                            <div class="cal-details">
+                                <span class="cal-artist">YEONJUN (TXT)</span>
+                                <span class="cal-release">Solo Comeback Track 'Ice Cream'</span>
+                                <span class="cal-type">Solo Single</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Voting Poll -->
+                <div class="glass-panel" id="poll-panel">
+                    <div class="section-header">
+                        <div class="section-title">
+                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            Live Favorite Track Poll
+                        </div>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Which is your
+                        favorite July comeback/release?</p>
+
+                    <div class="poll-options">
+                        <button class="poll-option-btn" onclick="vote(0)">
+                            <div class="poll-fill" id="fill-0"></div>
+                            <span class="poll-text">(G)I-DLE - Klaxon</span>
+                            <span class="poll-percent" id="pct-0">0%</span>
+                        </button>
+                        <button class="poll-option-btn" onclick="vote(1)">
+                            <div class="poll-fill" id="fill-1"></div>
+                            <span class="poll-text">YEONJUN (TXT) - Ice Cream</span>
+                            <span class="poll-percent" id="pct-1">0%</span>
+                        </button>
+                        <button class="poll-option-btn" onclick="vote(2)">
+                            <div class="poll-fill" id="fill-2"></div>
+                            <span class="poll-text">KIHYUN (MONSTA X) - BORDERLINE</span>
+                            <span class="poll-percent" id="pct-2">0%</span>
+                        </button>
+                        <button class="poll-option-btn" onclick="vote(3)">
+                            <div class="poll-fill" id="fill-3"></div>
+                            <span class="poll-text">RESCENE - Pretty Girl</span>
+                            <span class="poll-percent" id="pct-3">0%</span>
+                        </button>
+                    </div>
+                    <div class="poll-total-votes" id="total-votes">0 votes in total</div>
+                </div>
+
+                <!-- Trend Keywords -->
+                <div class="glass-panel">
+                    <div class="section-header">
+                        <div class="section-title">
+                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"></path>
+                            </svg>
+                            Live K-POP Keywords
+                        </div>
+                    </div>
+                    <div class="trend-tags">
+                        <span class="trend-keyword">#CORTIS_REDRED</span>
+                        <span class="trend-keyword">#TWICE_Finale</span>
+                        <span class="trend-keyword">#TMA_1stLineup</span>
+                        <span class="trend-keyword">#5thGenIdols</span>
+                        <span class="trend-keyword">#EasyListening</span>
+                        <span class="trend-keyword">#ShortFormChallenge</span>
+                        <span class="trend-keyword">#RESCENE_ConvenienceStore</span>
+                        <span class="trend-keyword">#PSY_DrenchedShow2026</span>
+                    </div>
+                </div>
+
             </div>
 
-            <div class="artist-grid">
-
-                <!-- Artist 1 -->
-                <div class="artist-card">
-                    <div class="art-glow glow-purple"></div>
-                    <div class="artist-card-bg"></div>
-                    <div class="artist-info">
-                        <span class="artist-genre">Legendary Icon</span>
-                        <h3 class="artist-name">BTS</h3>
-                        <p class="artist-desc">빌보드 Hot 100 1위 석권, 글로벌 음악 씬의 역사를 다시 쓴 글로벌 슈퍼스타.</p>
-                    </div>
-                </div>
-
-                <!-- Artist 2 -->
-                <div class="artist-card">
-                    <div class="art-glow glow-pink"></div>
-                    <div class="artist-card-bg"></div>
-                    <div class="artist-info">
-                        <span class="artist-genre">Queen of Pop</span>
-                        <h3 class="artist-name">BLACKPINK</h3>
-                        <p class="artist-desc">코첼라 헤드라이너, 압도적 비주얼과 글로벌 스타일 아이콘의 중심.</p>
-                    </div>
-                </div>
-
-                <!-- Artist 3 -->
-                <div class="artist-card">
-                    <div class="art-glow glow-blue"></div>
-                    <div class="artist-card-bg"></div>
-                    <div class="artist-info">
-                        <span class="artist-genre">5th Gen Leader</span>
-                        <h3 class="artist-name">NewJeans</h3>
-                        <p class="artist-desc">이지리스닝 신드롬과 Y2K 감성으로 무장한 전 세대 대표 아티스트.</p>
-                    </div>
-                </div>
-
-                <!-- Artist 4 -->
-                <div class="artist-card">
-                    <div class="art-glow glow-purple"></div>
-                    <div class="artist-card-bg"></div>
-                    <div class="artist-info">
-                        <span class="artist-genre">Performance King</span>
-                        <h3 class="artist-name">Stray Kids</h3>
-                        <p class="artist-desc">파워풀한 독자 프로듀싱 사운드로 전 세계 대형 스타디움 투어를 점령한 그룹.</p>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Join Banner -->
-        <section class="join-banner">
-            <h3>K-POP WAVE에 동참하세요</h3>
-            <p>세계적인 장르로 끊임없이 발전하고 있는 K-POP. 새로운 음악적 시도와 감동을 매일 만나보세요.</p>
-            <a href="javascript:alert('K-POP 뉴스레터 구독 완료! 최신 소식을 전해드립니다.')" class="btn">구독하고 소식 받기</a>
-        </section>
+        </div>
 
         <!-- Footer -->
         <footer>
-            <div class="footer-logo">K-POP WORLD</div>
-            <div>© 2026 K-POP World Platform. All Rights Reserved.</div>
+            <div>© 2026 K-POP PULSE. All Rights Reserved.</div>
+            <div class="footer-links">
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">Terms of Service</a>
+                <a href="#" class="footer-link">Support</a>
+            </div>
         </footer>
 
     </div>
 
+    <!-- JavaScript Logic -->
+    <script>
+        // Live Date & Time Tracker
+        function updateTime() {
+            const timeEl = document.getElementById('live-time');
+            const now = new Date();
+
+            // Format Korea Local Time in En
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+
+            timeEl.textContent = `${year}-${month}-${day} ${hours}:${minutes}:${seconds} KST`;
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        // Local Storage Poll System
+        const pollStorageKey = 'kpop_pulse_poll_votes_2026';
+        let votes = [24, 18, 12, 16]; // Base mock votes
+
+        // Try to load votes and state from LocalStorage
+        function initPoll() {
+            const savedVotes = localStorage.getItem(pollStorageKey);
+            const userVoted = localStorage.getItem(pollStorageKey + '_has_voted');
+
+            if (savedVotes) {
+                votes = JSON.parse(savedVotes);
+            } else {
+                localStorage.setItem(pollStorageKey, JSON.stringify(votes));
+            }
+
+            if (userVoted === 'true') {
+                showResults(true);
+            } else {
+                showResults(false);
+            }
+        }
+
+        function vote(index) {
+            if (localStorage.getItem(pollStorageKey + '_has_voted') === 'true') {
+                alert('You have already voted!');
+                return;
+            }
+
+            votes[index] += 1;
+            localStorage.setItem(pollStorageKey, JSON.stringify(votes));
+            localStorage.setItem(pollStorageKey + '_has_voted', 'true');
+
+            showResults(true);
+        }
+
+        function showResults(animate) {
+            const total = votes.reduce((a, b) => a + b, 0);
+            const pollPanel = document.getElementById('poll-panel');
+
+            if (localStorage.getItem(pollStorageKey + '_has_voted') === 'true') {
+                pollPanel.classList.add('poll-active');
+            }
+
+            votes.forEach((voteCount, idx) => {
+                const percent = total > 0 ? Math.round((voteCount / total) * 100) : 0;
+                const fillEl = document.getElementById(`fill-${idx}`);
+                const pctEl = document.getElementById(`pct-${idx}`);
+
+                if (animate) {
+                    fillEl.style.width = `${percent}%`;
+                    pctEl.style.opacity = 1;
+                    pctEl.textContent = `${percent}%`;
+                } else {
+                    fillEl.style.width = '0%';
+                    pctEl.style.opacity = 0;
+                }
+            });
+
+            document.getElementById('total-votes').textContent = `${total} votes in total`;
+        }
+
+        window.onload = initPoll;
+    </script>
 </body>
 
 </html>
