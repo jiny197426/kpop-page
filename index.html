@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K-POP: 세계를 사로잡은 한국의 소리</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #0b0816;
+            --card-bg: rgba(25, 20, 44, 0.6);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-primary: #ffffff;
+            --text-secondary: #c7c5d8;
+            --accent-purple: #9d4edd;
+            --accent-pink: #ff007f;
+            --accent-pink-glow: rgba(255, 0, 127, 0.4);
+            --accent-blue: #3a86c8;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: 'Noto Sans KR', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(circle at top right, rgba(157, 78, 221, 0.15), transparent 45%),
+                radial-gradient(circle at bottom left, rgba(255, 0, 127, 0.12), transparent 45%);
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            background: linear-gradient(45deg, var(--accent-pink), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 6rem 0 4rem 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.35rem 1rem;
+            background: rgba(255, 0, 127, 0.1);
+            border: 1px solid rgba(255, 0, 127, 0.3);
+            color: var(--accent-pink);
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.1);
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 30%, #e0aaff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 2.5rem auto;
+            font-weight: 300;
+        }
+
+        /* Cards Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(157, 78, 221, 0.4);
+            box-shadow: 0 15px 35px rgba(157, 78, 221, 0.15);
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--accent-purple), rgba(157, 78, 221, 0.4));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 6rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+        }
+
+        /* Artist Showcase */
+        .artists-section {
+            padding: 4rem 0 8rem 0;
+        }
+
+        .artist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .artist-card {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            aspect-ratio: 4/5;
+            background: linear-gradient(180deg, #1d1836, #090615);
+            border: 1px solid var(--card-border);
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .artist-card:hover {
+            transform: scale(1.03);
+            border-color: var(--accent-pink);
+            box-shadow: 0 10px 25px rgba(255, 0, 127, 0.2);
+        }
+
+        .artist-card-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(9, 6, 21, 0.9) 30%, rgba(9, 6, 21, 0.1) 80%);
+            z-index: 1;
+        }
+
+        .artist-info {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .artist-name {
+            font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+        }
+
+        .artist-genre {
+            font-size: 0.8rem;
+            color: var(--accent-pink);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .artist-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        /* Abstract glowing art for background card */
+        .art-glow {
+            position: absolute;
+            top: 20%;
+            left: 20%;
+            width: 60%;
+            height: 40%;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.35;
+            z-index: 0;
+        }
+
+        .glow-purple {
+            background: var(--accent-purple);
+        }
+
+        .glow-pink {
+            background: var(--accent-pink);
+        }
+
+        .glow-blue {
+            background: var(--accent-blue);
+        }
+
+        /* Interactive Footer Banner */
+        .join-banner {
+            background: linear-gradient(135deg, rgba(157, 78, 221, 0.2), rgba(255, 0, 127, 0.1));
+            border: 1px solid rgba(255, 0, 127, 0.2);
+            border-radius: 24px;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .join-banner h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .join-banner p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.85rem 2rem;
+            background: linear-gradient(90deg, var(--accent-pink), var(--accent-purple));
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 30px;
+            box-shadow: 0 0 20px var(--accent-pink-glow);
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 0, 127, 0.6);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.05rem;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Navigation -->
+        <nav>
+            <div class="logo">K-POP WORLD</div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <span class="hero-badge">Global Phenomenon</span>
+            <h1>K-POP의 경이로운 여정</h1>
+            <p>
+                단순한 대중음악 장르를 넘어, 트렌디한 사운드, 경이로운 퍼포먼스, 그리고 독창적인 세계관을 통해 전 세계 음악팬들의 마음을 사로잡은 글로벌 문화 코드 K-POP을 소개합니다.
+            </p>
+            <a href="#discover" class="btn">지금 알아보기</a>
+        </section>
+
+        <!-- Features Grid -->
+        <section class="features-section" id="discover">
+            <div class="section-header">
+                <h2>K-POP의 핵심 3대 매력</h2>
+                <p>전 세계가 한국 대중가요에 열광하는 이유</p>
+            </div>
+
+            <div class="grid">
+
+                <!-- Feature 1 -->
+                <div class="card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
+                        </svg>
+                    </div>
+                    <h3>독창적인 사운드 & 콘셉트</h3>
+                    <p>다채로운 팝 장르의 조합, 트렌디한 비트, 그리고 앨범마다 이어지는 아티스트들의 탄탄하고 매력적인 유니버스(세계관) 스토리가 듣는 재미를 극대화합니다.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                        </svg>
+                    </div>
+                    <h3>한계를 넘어선 칼군무</h3>
+                    <p>보는 음악의 절정을 선사하는 화려하고 정교한 단체 댄스 퍼포먼스. 숏폼 비디오 시대를 맞아 전 세계 챌린지 붐을 이끌며 문화적 흐름을 주도합니다.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M16.5 13c-1.2 0-3.07.34-4.5 1-1.43-.67-3.3-1-4.5-1C5.07 13 1.5 14.58 1.5 17v2.5c0 .28.22.5.5.5h19.5c.28 0 .5-.22.5-.5V17c0-2.42-3.57-4-6-4zM7.5 11c1.93 0 3.5-1.57 3.5-3.5S9.43 4 7.5 4 4 5.57 4 7.5 5.57 11 7.5 11zm9 0c1.93 0 3.5-1.57 3.5-3.5S18.43 4 16.5 4s-3.5 1.57-3.5 3.5 1.57 3.5 3.5 3.5z" />
+                        </svg>
+                    </div>
+                    <h3>글로벌 팬덤 네트워크</h3>
+                    <p>전 세계 팬들이 자발적으로 결집하여 만들어낸 강력한 유대감. 소셜 미디어를 기반으로 아티스트와 실시간으로 소통하며 세계적 영향력을 발휘합니다.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Artists Section -->
+        <section class="artists-section">
+            <div class="section-header">
+                <h2>글로벌 아이콘</h2>
+                <p>현재 글로벌 차트를 주도하고 있는 K-POP 대표 주자들</p>
+            </div>
+
+            <div class="artist-grid">
+
+                <!-- Artist 1 -->
+                <div class="artist-card">
+                    <div class="art-glow glow-purple"></div>
+                    <div class="artist-card-bg"></div>
+                    <div class="artist-info">
+                        <span class="artist-genre">Legendary Icon</span>
+                        <h3 class="artist-name">BTS</h3>
+                        <p class="artist-desc">빌보드 Hot 100 1위 석권, 글로벌 음악 씬의 역사를 다시 쓴 글로벌 슈퍼스타.</p>
+                    </div>
+                </div>
+
+                <!-- Artist 2 -->
+                <div class="artist-card">
+                    <div class="art-glow glow-pink"></div>
+                    <div class="artist-card-bg"></div>
+                    <div class="artist-info">
+                        <span class="artist-genre">Queen of Pop</span>
+                        <h3 class="artist-name">BLACKPINK</h3>
+                        <p class="artist-desc">코첼라 헤드라이너, 압도적 비주얼과 글로벌 스타일 아이콘의 중심.</p>
+                    </div>
+                </div>
+
+                <!-- Artist 3 -->
+                <div class="artist-card">
+                    <div class="art-glow glow-blue"></div>
+                    <div class="artist-card-bg"></div>
+                    <div class="artist-info">
+                        <span class="artist-genre">5th Gen Leader</span>
+                        <h3 class="artist-name">NewJeans</h3>
+                        <p class="artist-desc">이지리스닝 신드롬과 Y2K 감성으로 무장한 전 세대 대표 아티스트.</p>
+                    </div>
+                </div>
+
+                <!-- Artist 4 -->
+                <div class="artist-card">
+                    <div class="art-glow glow-purple"></div>
+                    <div class="artist-card-bg"></div>
+                    <div class="artist-info">
+                        <span class="artist-genre">Performance King</span>
+                        <h3 class="artist-name">Stray Kids</h3>
+                        <p class="artist-desc">파워풀한 독자 프로듀싱 사운드로 전 세계 대형 스타디움 투어를 점령한 그룹.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Join Banner -->
+        <section class="join-banner">
+            <h3>K-POP WAVE에 동참하세요</h3>
+            <p>세계적인 장르로 끊임없이 발전하고 있는 K-POP. 새로운 음악적 시도와 감동을 매일 만나보세요.</p>
+            <a href="javascript:alert('K-POP 뉴스레터 구독 완료! 최신 소식을 전해드립니다.')" class="btn">구독하고 소식 받기</a>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-logo">K-POP WORLD</div>
+            <div>© 2026 K-POP World Platform. All Rights Reserved.</div>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>
